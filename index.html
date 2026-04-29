@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LaST₀*: Shaping Action through Physical Latent Reasoning via Reinforcement Learning</title>
+  <meta
+    name="description"
+    content="LaST₀*: A unified VLA framework integrating latent Chain-of-Thought reasoning with reinforcement learning."
+  />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="LaST₀*: Shaping Action through Physical Latent Reasoning via RL" />
+  <meta
+    property="og:description"
+    content="A unified VLA framework that jointly optimizes latent reasoning and action via Latent-Action Policy Optimization (LAPO). 99.8% on LIBERO, +50% in real-world."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="static/images/teaset.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <!-- KaTeX for math rendering -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+  />
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}], throwOnError:false});"
+  ></script>
+
+  <link rel="stylesheet" href="static/css/style.css" />
+
+  <!-- Intro hero gate. Sets `intro-active` on <html> before body renders so the
+       hero veil shows immediately, with no FOUC. Skipped on deep-link (#hash) or
+       if the user prefers reduced motion. -->
+  <script>
+    (function () {
+      var deepLink = !!window.location.hash;
+      var reduced = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!deepLink && !reduced) {
+        document.documentElement.classList.add('intro-active');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- Hero intro veil. Shown only when <html> has .intro-active. The image and
+       title here are duplicates of the in-flow ones; on first scroll we apply
+       transforms that *morph* them into the in-flow positions, then fade the
+       veil out — visually a continuous transformation instead of a cross-fade. -->
+  <div id="intro-veil" aria-label="Welcome">
+    <div class="intro-img-area">
+      <img class="intro-img" src="static/images/teaset.png" alt="LaST₀* teaser" />
+    </div>
+    <div class="intro-bar"></div>
+    <div class="intro-title-area">
+      <h1 class="intro-title">
+        <span class="method-name">$\text{LaST}_0^*$</span>:
+        Shaping Action through Physical Latent Reasoning via Reinforcement Learning
+      </h1>
+    </div>
+    <p class="intro-hint" aria-hidden="true">scroll&nbsp;&nbsp;↓</p>
+  </div>
+
+  <!-- ===========================  1) TEASER (top of page)  =========================== -->
+  <section class="teaser-top">
+    <div class="container">
+      <figure class="teaser">
+        <img src="static/images/teaset.png" alt="LaST₀* teaser figure" />
+        <figcaption>
+          <strong>$\text{LaST}_0^*$</strong> integrates continuous
+          <em>latent Chain-of-Thought reasoning over physical dynamics</em> before
+          action execution, jointly optimized end-to-end with reinforcement learning
+          via our proposed <strong>LAPO</strong>.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===========================  2) TITLE + AUTHORS  =========================== -->
+  <header class="hero">
+    <div class="container">
+      <h1 class="paper-title">
+        <span class="method-name">$\text{LaST}_0^*$</span>:
+        Shaping Action through Physical Latent Reasoning via Reinforcement Learning
+      </h1>
+
+      <div class="authors">
+        <span class="author"><a href="#">Anonymous Author 1</a><sup>1*</sup></span>
+        <span class="author"><a href="#">Anonymous Author 2</a><sup>1*</sup></span>
+        <span class="author"><a href="#">Anonymous Author 3</a><sup>2</sup></span>
+        <span class="author"><a href="#">Anonymous Author 4</a><sup>1</sup></span>
+        <span class="author"><a href="#">Senior Author</a><sup>1✉</sup></span>
+      </div>
+
+      <div class="affiliations">
+        <span><sup>1</sup>Institution One</span>
+        <span><sup>2</sup>Institution Two</span>
+      </div>
+
+      <div class="notes">
+        <span><sup>*</sup>Equal contribution</span>
+        <span><sup>✉</sup>Corresponding author</span>
+      </div>
+
+      <div class="action-buttons">
+        <a class="btn" href="#" target="_blank" rel="noopener">
+          <i class="fas fa-file-pdf"></i><span>Paper</span>
+        </a>
+        <a class="btn arxiv-btn" href="#" target="_blank" rel="noopener">
+          <!-- Official arXiv logomark (long-arm chi-X), split-color version.
+               Source: https://info.arxiv.org/assets/arxiv-logomark-small.svg
+               Left half = Cornell red (#b31b1b). Right half = white (currentColor).
+               The right-half compound paths from the original SVG were collapsed
+               to outer-only so they fill solid instead of rendering as outlines. -->
+          <svg class="ai-arxiv" viewBox="0 0 74.492 100.25" aria-hidden="true">
+            <g transform="translate(-526.086 -245.559)">
+              <!-- Right half: top-right end of the "/" arm + bottom-right end of the "\" arm -->
+              <path fill="currentColor" d="M586.72,255.616a3.377,3.377,0,0,1,.448.031,5.917,5.917,0,0,1,3.581,2.79c.454,1.116.314,2.023-1.315,4.141L563.168,293.6l-8.558-10.047,29.348-26.616a4.406,4.406,0,0,1,2.762-1.321Z"/>
+              <path fill="currentColor" d="M553.423,284.593l8.977,10.558L597.911,337.9c.873,1.093,1.419,2.186,1.047,3.418a4.092,4.092,0,0,1-2.721,2.837,3.557,3.557,0,0,1-1.045.159,4,4,0,0,1-2.687-1.124L548.01,300.808c-3.5-3.5-2.971-8.151.436-11.558l4.977-4.657Z"/>
+              <!-- Left half: top-left end of the "\" arm + bottom-left end of the "/" arm -->
+              <path fill="#b31b1b" d="M562.4,295.151l9.556,11.5,5.761-5.356a7.926,7.926,0,0,0,.041-11.743l-43.7-41.923s-1.671-2.029-3.437-2.071a4.49,4.49,0,0,0-4.23,2.718c-.688,1.651-.194,2.809,1.315,4.97l29.306,35.565Z"/>
+              <path fill="#b31b1b" d="M553.7,306.223l-17.116,21.024c-1.255,1.337-2.032,3.683-1.331,5.367a4.587,4.587,0,0,0,4.287,2.841,4.087,4.087,0,0,0,3.082-1.523l20.328-18.9Z"/>
+            </g>
+          </svg>
+          <span>arXiv</span>
+        </a>
+        <a class="btn" href="#" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i><span>Code</span>
+        </a>
+        <a class="btn" href="#" target="_blank" rel="noopener">
+          <i class="fab fa-youtube"></i><span>Video</span>
+        </a>
+        <a class="btn" href="#bibtex">
+          <i class="fas fa-quote-right"></i><span>BibTeX</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===========================  3) HEADLINE RESULTS  =========================== -->
+  <section class="section" id="results">
+    <div class="container">
+      <h2>Headline Results</h2>
+
+      <!-- Big-number callouts -->
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-num">99.8<span class="stat-unit">%</span></div>
+          <div class="stat-label">Average success rate on LIBERO<br />(new state-of-the-art)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">+50<span class="stat-unit">%</span></div>
+          <div class="stat-label">Real-world success-rate gain over the SFT warm-up policy</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1<span class="stat-unit"> traj.</span></div>
+          <div class="stat-label">Single expert trajectory per task for warm-up</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100<span class="stat-unit">%</span></div>
+          <div class="stat-label">OOD generalization on LIBERO-Spatial</div>
+        </div>
+      </div>
+
+      <!-- LIBERO comparison table -->
+      <h3 class="subhead">LIBERO Benchmark — Comparison with SFT and RL Baselines</h3>
+      <p class="caption-lead">
+        Success Rate (%) across four task suites. <strong>Bold</strong> marks the best
+        per column; <span class="ours">our method</span> ranks #1 on every suite.
+      </p>
+      <div class="table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Paradigm</th>
+              <th>Spatial</th>
+              <th>Object</th>
+              <th>Goal</th>
+              <th>Long</th>
+              <th>Average</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>OpenVLA</td><td>SFT</td>
+              <td>84.7</td><td>88.4</td><td>79.2</td><td>53.7</td><td>76.5</td>
+            </tr>
+            <tr>
+              <td>GR00T-N1</td><td>SFT</td>
+              <td>94.4</td><td>97.6</td><td>93.0</td><td>90.6</td><td>93.9</td>
+            </tr>
+            <tr>
+              <td>π<sub>0</sub></td><td>SFT</td>
+              <td>96.8</td><td>98.8</td><td>95.8</td><td>85.2</td><td>94.2</td>
+            </tr>
+            <tr>
+              <td>π<sub>0.5</sub></td><td>SFT</td>
+              <td>98.8</td><td>98.2</td><td>98.0</td><td>92.4</td><td>96.9</td>
+            </tr>
+            <tr>
+              <td>OpenVLA-OFT</td><td>SFT</td>
+              <td>97.6</td><td>98.4</td><td>97.9</td><td>94.5</td><td>97.1</td>
+            </tr>
+            <tr class="sep"><td colspan="7"></td></tr>
+            <tr>
+              <td>GRAPE<sup>†</sup></td><td>RL</td>
+              <td>88.5</td><td>92.1</td><td>83.1</td><td>57.2</td><td>80.2</td>
+            </tr>
+            <tr>
+              <td>TGRPO<sup>†</sup></td><td>RL</td>
+              <td>90.4</td><td>92.2</td><td>81.0</td><td>59.2</td><td>80.7</td>
+            </tr>
+            <tr>
+              <td>VLA-RL<sup>†</sup></td><td>RL</td>
+              <td>90.2</td><td>91.8</td><td>82.2</td><td>59.8</td><td>81.0</td>
+            </tr>
+            <tr>
+              <td>SimpleVLA-RL</td><td>RL</td>
+              <td>98.2</td><td>98.7</td><td>98.8</td><td>91.7</td><td>96.9</td>
+            </tr>
+            <tr>
+              <td>π<sub>RL</sub><sup>‡</sup></td><td>RL</td>
+              <td>99.6</td><td><strong>100.0</strong></td><td>99.6</td><td>94.0</td><td>98.3</td>
+            </tr>
+            <tr class="ours-row">
+              <td>$\text{LaST}_0^*$ (Ours)</td>
+              <td>RL</td>
+              <td><strong>99.8</strong></td>
+              <td><strong>100.0</strong></td>
+              <td><strong>100.0</strong></td>
+              <td><strong>99.4</strong></td>
+              <td><strong>99.8</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption-note">
+        <sup>†</sup>full-trajectory warm-up &nbsp;&middot;&nbsp;
+        <sup>‡</sup>two-camera-view training &nbsp;&middot;&nbsp; others use
+        single-trajectory, single-view data, matching our setting.
+      </p>
+
+      <!-- Learning-curve figure -->
+      <figure>
+        <img src="static/images/main_results.png" alt="Online RL learning curves on LIBERO" />
+        <figcaption>
+          <strong>Online RL learning curves on LIBERO.</strong>
+          $\text{LaST}_0^*$+LAPO
+          (<span style="color:var(--accent);font-weight:600">red</span>) vs. the
+          standard Action-Only+PPO baseline
+          (<span style="color:var(--accent-blue);font-weight:600">blue</span>) across
+          all four task suites.
+        </figcaption>
+      </figure>
+
+      <!-- Two-axis improvement callout -->
+      <div class="callout-grid">
+        <div class="callout">
+          <div class="callout-title">
+            <i class="fas fa-bolt"></i><span>Faster Convergence</span>
+          </div>
+          <p>
+            The red curve <strong>rises sharply within the first few hundred RL
+            steps</strong>, while the Action-Only+PPO baseline takes
+            <em>several times longer</em> to reach the same level — and never catches
+            up on LIBERO-Spatial or LIBERO-Long.
+          </p>
+        </div>
+        <div class="callout">
+          <div class="callout-title">
+            <i class="fas fa-arrow-up"></i><span>Higher Final Accuracy</span>
+          </div>
+          <p>
+            At convergence, $\text{LaST}_0^*$+LAPO
+            asymptotes near <strong>100% success</strong> on every suite, beating the
+            baseline by a wide margin — most strikingly on the long-horizon suite
+            (<strong>99.4% vs. 88.2%</strong>).
+          </p>
+        </div>
+        <div class="callout">
+          <div class="callout-title">
+            <i class="fas fa-globe"></i><span>Stronger OOD Transfer</span>
+          </div>
+          <p>
+            On held-out tasks the policy reaches <strong>100% OOD success</strong>
+            on Spatial-Task0, Object-Task0, and Goal-Task5 — while the
+            Action-Only+PPO baseline overfits to training kinematics and even
+            <em>degrades</em> on long-horizon tasks.
+          </p>
+        </div>
+      </div>
+      <p class="caption-note">
+        Both axes — <em>sample efficiency</em> and <em>asymptotic performance</em> —
+        improve simultaneously, indicating that latent reasoning is not just a
+        regularizer but a fundamentally better optimization substrate for VLA
+        policies.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===========================  4) REAL-WORLD EXPERIMENTS  =========================== -->
+  <section class="section" id="real-world">
+    <div class="container">
+      <h2>Real-World Experiments</h2>
+      <p class="lead">
+        We deploy $\text{LaST}_0^*$ on Franka Research 3 hardware across four
+        manipulation tasks — <em>Insert hexagon block</em>,
+        <em>Open bag zipper</em> (dual-arm), <em>Insert USB into port</em>, and
+        <em>Open marker cap</em>. Each task uses only 20 expert demonstrations for
+        warm-up, followed by online RL post-training with LoRA. Every task is
+        evaluated under three out-of-distribution perturbations
+        (<em>Object</em> / <em>Background</em> / <em>Lighting</em>) to stress-test
+        generalization.
+      </p>
+
+      <figure>
+        <img src="static/images/real.png" alt="Real-world rollouts after RL post-training" />
+        <figcaption>
+          <strong>Qualitative real-world rollouts.</strong> Frame-by-frame snapshots
+          of $\text{LaST}_0^*$+LAPO solving each task on physical hardware after RL
+          post-training. The full RL-trained policy nearly doubles success on most
+          settings and remains robust under object, background, and lighting
+          perturbations.
+        </figcaption>
+      </figure>
+
+      <h3 class="subhead">Success Rate (%) — After Warm-up vs. After RL</h3>
+      <p class="caption-lead">
+        Layout mirrors Table&nbsp;3 of the paper: two task pairs stacked, each pair
+        shows the four perturbation columns (Original / Object / Background /
+        Lighting) twice — once per task.
+      </p>
+
+      <!-- ===== Sub-table 1: hexagon | zipper ===== -->
+      <div class="table-wrap">
+        <table class="results-table real-world-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Stages</th>
+              <th colspan="4" class="task-pair-head">Insert hexagon block</th>
+              <th colspan="4" class="task-pair-head pair-left-border">Open bag zipper</th>
+            </tr>
+            <tr>
+              <th>Original</th><th>Object</th><th>Background</th><th>Lighting</th>
+              <th class="pair-left-border">Original</th><th>Object</th><th>Background</th><th>Lighting</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>After warm-up</td>
+              <td>45</td><td>20</td><td>20</td><td>15</td>
+              <td class="pair-left-border">55</td><td>—</td><td>40</td><td>25</td>
+            </tr>
+            <tr class="ours-row">
+              <td>After RL</td>
+              <td><strong>90</strong></td><td><strong>80</strong></td>
+              <td><strong>85</strong></td><td><strong>80</strong></td>
+              <td class="pair-left-border"><strong>95</strong></td><td>—</td>
+              <td><strong>95</strong></td><td><strong>90</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== Sub-table 2: USB | marker cap ===== -->
+      <div class="table-wrap">
+        <table class="results-table real-world-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Stages</th>
+              <th colspan="4" class="task-pair-head">Insert USB into port</th>
+              <th colspan="4" class="task-pair-head pair-left-border">Open marker cap</th>
+            </tr>
+            <tr>
+              <th>Original</th><th>Object</th><th>Background</th><th>Lighting</th>
+              <th class="pair-left-border">Original</th><th>Object</th><th>Background</th><th>Lighting</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>After warm-up</td>
+              <td class="placeholder">—</td><td class="placeholder">—</td>
+              <td class="placeholder">—</td><td class="placeholder">—</td>
+              <td class="placeholder pair-left-border">—</td><td class="placeholder">—</td>
+              <td class="placeholder">—</td><td class="placeholder">—</td>
+            </tr>
+            <tr class="ours-row">
+              <td>After RL</td>
+              <td class="placeholder">—</td><td class="placeholder">—</td>
+              <td class="placeholder">—</td><td class="placeholder">—</td>
+              <td class="placeholder pair-left-border">—</td><td class="placeholder">—</td>
+              <td class="placeholder">—</td><td class="placeholder">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="caption-note">
+        Each cell averages 20 independent rollouts. <em>"—"</em> means
+        not-applicable (Object perturbation isn't meaningful for the bag-zipper
+        task) or data not yet released by the authors (USB / marker cap rows).
+        RL post-training nearly doubles success on the released tasks and remains
+        robust under perturbations.
+      </p>
+
+      <!-- =====================================================
+           VIDEO BLOCKS — one block per task, mirroring the four
+           tasks in the table above. Drop your .mp4 files into
+           static/videos/ with the filenames referenced below.
+           ===================================================== -->
+
+      <!-- Task 1: Insert hexagon block (single-arm) -->
+      <div class="task-block">
+        <h3>Insert Hexagon Block <span class="task-tag">single-arm</span></h3>
+        <p class="task-meta">
+          A single Franka arm picks up a hexagon block and inserts it into a tightly
+          fitted slot. Tests fine-grained alignment under sub-cm tolerance.
+        </p>
+        <span class="row-label">Original Rollout (90%)</span>
+        <div class="video-grid one">
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/hexagon_original.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Original setting</figcaption>
+          </figure>
+        </div>
+        <span class="row-label">Generalization (Object · Background · Lighting)</span>
+        <div class="video-grid">
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/hexagon_object.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Object swap (80%)</figcaption>
+          </figure>
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/hexagon_background.mp4" type="video/mp4" />
+            </video>
+            <figcaption>New background (85%)</figcaption>
+          </figure>
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/hexagon_lighting.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Different lighting (80%)</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Task 2: Open bag zipper (dual-arm) -->
+      <div class="task-block">
+        <h3>Open Bag Zipper <span class="task-tag">dual-arm</span></h3>
+        <p class="task-meta">
+          Two coordinated Franka arms grasp opposite sides of a bag and pull the
+          zipper open. Tests bimanual coordination on a deformable target.
+        </p>
+        <span class="row-label">Original Rollout (95%)</span>
+        <div class="video-grid one">
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/zipper_original.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Original setting</figcaption>
+          </figure>
+        </div>
+        <span class="row-label">Generalization (Background · Lighting)</span>
+        <div class="video-grid">
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/zipper_background.mp4" type="video/mp4" />
+            </video>
+            <figcaption>New background (95%)</figcaption>
+          </figure>
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/zipper_lighting.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Different lighting (90%)</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Task 3: Insert USB into port -->
+      <div class="task-block">
+        <h3>Insert USB into Port <span class="task-tag">single-arm</span></h3>
+        <p class="task-meta">
+          Pick up a USB connector and insert it into the matching port. Stresses
+          fine-grained orientation and sub-mm precision.
+        </p>
+        <span class="row-label">Original Rollout</span>
+        <div class="video-grid one">
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/usb_original.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Original setting</figcaption>
+          </figure>
+        </div>
+        <span class="row-label">Generalization (Object · Background · Lighting)</span>
+        <div class="video-grid">
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/usb_object.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Object swap</figcaption>
+          </figure>
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/usb_background.mp4" type="video/mp4" />
+            </video>
+            <figcaption>New background</figcaption>
+          </figure>
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/usb_lighting.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Different lighting</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Task 4: Open marker cap -->
+      <div class="task-block">
+        <h3>Open Marker Cap <span class="task-tag">single-arm</span></h3>
+        <p class="task-meta">
+          Pull the cap off a marker pen — a small-object grasp + axial-pull task
+          that combines tight tolerance with a non-trivial release motion.
+        </p>
+        <span class="row-label">Original Rollout</span>
+        <div class="video-grid one">
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/marker_original.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Original setting</figcaption>
+          </figure>
+        </div>
+        <span class="row-label">Generalization (Object · Background · Lighting)</span>
+        <div class="video-grid">
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/marker_object.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Object swap</figcaption>
+          </figure>
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/marker_background.mp4" type="video/mp4" />
+            </video>
+            <figcaption>New background</figcaption>
+          </figure>
+          <figure>
+            <video controls muted loop playsinline preload="metadata"
+                   poster="static/images/video_placeholder.svg">
+              <source src="static/videos/marker_lighting.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Different lighting</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================  5) ABSTRACT  =========================== -->
+  <section class="section alt" id="abstract">
+    <div class="container narrow">
+      <h2>Abstract</h2>
+      <p>
+        Vision-Language-Action (VLA) models have increasingly incorporated reasoning
+        mechanisms for complex robotic manipulation. While explicit linguistic
+        reasoning offers structured guidance, it suffers from inference latency and
+        discretization bottlenecks. Continuous latent reasoning provides a more
+        expressive alternative, yet existing approaches remain grounded in imitation
+        learning, limiting adaptability and generalization. Although online
+        reinforcement learning (RL) enables exploration through trial-and-error, it is
+        largely restricted to vanilla action-space optimization, bypassing the
+        underlying physical reasoning process.
+      </p>
+      <p>
+        We present <strong>$\text{LaST}_0^*$</strong>, a unified VLA
+        framework that integrates latent Chain-of-Thought (CoT) reasoning over
+        physical dynamics prior to action execution, along with a tailored RL
+        post-training paradigm. We propose
+        <strong>Latent-to-Action Policy Optimization (LAPO)</strong>, a novel RL
+        algorithm that jointly optimizes the latent reasoning process and the action
+        policy. Furthermore, an
+        <strong>adaptive latent CoT mechanism</strong> allows the policy to
+        dynamically adjust its reasoning horizon based on environment complexity.
+      </p>
+      <p>
+        Extensive experiments show that $\text{LaST}_0^*$ achieves a
+        near-perfect <strong>99.8% average success rate on LIBERO</strong> with only
+        one-shot supervised warm-up. In real-world deployments, LAPO post-training
+        yields up to a <strong>50% improvement</strong> over the SFT policy across
+        four complex tasks, including both single-arm and dual-arm settings.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===========================  6) BIBTEX  =========================== -->
+  <section class="section" id="bibtex">
+    <div class="container narrow">
+      <h2>BibTeX</h2>
+      <pre><code>@article{last0_2026,
+  title   = {LaST$_0^*$: Shaping Action through Physical Latent Reasoning
+             via Reinforcement Learning},
+  author  = {Anonymous},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026}
+}</code></pre>
+      <button id="copy-bibtex" class="btn small">
+        <i class="fas fa-copy"></i><span>Copy</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===========================  FOOTER  =========================== -->
+  <footer>
+    <div class="container narrow">
+      <p>
+        Page template adapted from
+        <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener"
+          >Nerfies</a
+        >. Source on
+        <a href="#" target="_blank" rel="noopener">GitHub</a>.
+      </p>
+    </div>
+  </footer>
+
+  <script src="static/js/main.js"></script>
+</body>
+</html>

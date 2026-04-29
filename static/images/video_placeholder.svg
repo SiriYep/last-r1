@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Video placeholder">
+  <rect width="640" height="360" fill="#1f2937"/>
+  <g fill="#9ca3af" font-family="Inter, system-ui, sans-serif" text-anchor="middle">
+    <circle cx="320" cy="160" r="48" fill="none" stroke="#9ca3af" stroke-width="3"/>
+    <polygon points="304,138 304,182 348,160" fill="#9ca3af"/>
+    <text x="320" y="248" font-size="18" font-weight="500">Video coming soon</text>
+    <text x="320" y="276" font-size="13" fill="#6b7280">Drop the .mp4 into static/videos/</text>
+  </g>
+</svg>

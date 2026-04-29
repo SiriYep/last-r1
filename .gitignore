@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+node_modules/
+
+# Claude Code session state
+.claude/
+
+# LaTeX source — only kept locally, not deployed
+ref/
