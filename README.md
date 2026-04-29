@@ -2,7 +2,7 @@
 
 Static project page for [**LaST<sub>0</sub><sup>*</sup>: Shaping Action through Physical Latent Reasoning via Reinforcement Learning**](#). Plain HTML / CSS / vanilla JS, no build step, hosted on GitHub Pages.
 
-🔗 **Live**: <https://siriyep.github.io/last-star-zero/> *(activates after `Settings → Pages → Source = main / root` on first deploy)*
+🔗 **Live**: <https://siriyep.github.io/last-star-0/> *(activates after `Settings → Pages → Source = main / root` on first deploy)*
 
 ## 页面内容
 
