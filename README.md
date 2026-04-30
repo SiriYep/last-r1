@@ -2,7 +2,7 @@
 
 Static project page for [**LaST-R1: Reinforcing Action via Adaptive Physical Latent Reasoning for VLA Models**](#). Plain HTML / CSS / vanilla JS, no build step, hosted on GitHub Pages.
 
-🔗 **Live**: <https://siriyep.github.io/last-star-0/>
+🔗 **Live**: <https://siriyep.github.io/last-r1/>
 
 ## 页面内容
 
