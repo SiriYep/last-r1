@@ -53,13 +53,14 @@ html.intro-done body > *:not(#intro-veil) {
   #intro-veil { --intro-bar-h: 220px; }
 }
 
-/* Image — placed in the upper area above the bar, centered, sized to fit. */
+/* Image — placed in the lower area below the title bar, centered, sized to fit.
+   On scroll the morph translates this up to the in-flow teaser position. */
 #intro-veil .intro-img-area {
   position: absolute;
-  top: 0;
+  top: var(--intro-bar-h);
   left: 0;
   right: 0;
-  bottom: var(--intro-bar-h);
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,15 +77,16 @@ html.intro-done body > *:not(#intro-veil) {
   will-change: transform;
 }
 
-/* Bar — visual element at the bottom (white bg + thin top border). */
+/* Bar — visual element at the top (white bg + thin bottom border). On scroll
+   the bar fades out while the title morphs down into the in-flow hero. */
 #intro-veil .intro-bar {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   height: var(--intro-bar-h);
   background: #ffffff;
-  border-top: 1px solid #e5e5e7;
+  border-bottom: 1px solid #e5e5e7;
 }
 
 /* Title — centered inside its own positioned area so we can transform freely
@@ -93,14 +95,14 @@ html.intro-done body > *:not(#intro-veil) {
    morph is a *pure translate* — no scaling, no wrap-line shift. */
 #intro-veil .intro-title-area {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   height: var(--intro-bar-h);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1.5rem 36px; /* extra bottom padding so the hint has room */
+  padding: 0 1.5rem;
   pointer-events: none;
 }
 #intro-veil .intro-title {
@@ -626,6 +628,17 @@ figcaption {
 }
 .real-world-table tr.ours-row:hover {
   background: var(--accent-soft);
+}
+/* Relative drop annotations next to OOD numbers, e.g. "75 (-16%)" */
+.real-world-table .drop {
+  color: var(--fg-muted);
+  font-size: 0.78em;
+  font-weight: 400;
+  margin-left: 0.15em;
+}
+.real-world-table tr.ours-row .drop {
+  /* Slightly muted on the highlighted row too, but keep some weight */
+  color: #6b3a45;
 }
 
 /* ========== Video grid (real-world rollouts) ========== */
