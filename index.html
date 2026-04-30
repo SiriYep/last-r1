@@ -87,10 +87,9 @@
       <figure class="teaser">
         <img src="static/images/teaser.png" alt="LaST-R1 teaser figure" />
         <figcaption>
-          <strong>LaST-R1</strong> integrates continuous
-          <em>latent Chain-of-Thought reasoning over physical dynamics</em> before
-          action execution, jointly optimized end-to-end with reinforcement learning
-          via our proposed <strong>LAPO</strong>.
+          <strong>LaST-R1.</strong> Unlike vanilla RL baselines that strictly optimize
+          actions, our approach utilizes LAPO to jointly optimize an adaptive latent
+          CoT alongside physical execution.
         </figcaption>
       </figure>
     </div>
@@ -105,50 +104,43 @@
       </h1>
 
       <div class="authors">
-        <span class="author"><a href="#">Anonymous Author 1</a><sup>1*</sup></span>
-        <span class="author"><a href="#">Anonymous Author 2</a><sup>1*</sup></span>
-        <span class="author"><a href="#">Anonymous Author 3</a><sup>2</sup></span>
-        <span class="author"><a href="#">Anonymous Author 4</a><sup>1</sup></span>
-        <span class="author"><a href="#">Senior Author</a><sup>1✉</sup></span>
+        <span class="author">Hao Chen<sup>1,2*</sup></span>
+        <span class="author">Jiaming Liu<sup>2*†</sup></span>
+        <span class="author">Zhonghao Yan<sup>2*</sup></span>
+        <span class="author">Nuowei Han<sup>2*</sup></span>
+        <span class="author">Renrui Zhang<sup>1†</sup></span>
+        <span class="author">Chenyang Gu<sup>2</sup></span>
+        <span class="author">Jialin Gao<sup>1</sup></span>
+        <span class="author">Ziyu Guo<sup>1</sup></span>
+        <span class="author">Siyuan Qian<sup>2</sup></span>
+        <span class="author">Yinxi Wang<sup>2</sup></span>
+        <span class="author">Peng Jia<sup>3</sup></span>
+        <span class="author">Chi-Wing Fu<sup>1</sup></span>
+        <span class="author">Shanghang Zhang<sup>2✉</sup></span>
+        <span class="author">Pheng-Ann Heng<sup>1</sup></span>
       </div>
 
       <div class="affiliations">
-        <span><sup>1</sup>Institution One</span>
-        <span><sup>2</sup>Institution Two</span>
+        <span><sup>1</sup>The Chinese University of Hong Kong</span>
+        <span><sup>2</sup>State Key Laboratory of Multimedia Information Processing, School of Computer Science, Peking University</span>
+        <span><sup>3</sup>Simplexity Robotics</span>
       </div>
 
       <div class="notes">
         <span><sup>*</sup>Equal contribution</span>
+        <span><sup>†</sup>Project lead</span>
         <span><sup>✉</sup>Corresponding author</span>
       </div>
 
       <div class="action-buttons">
-        <a class="btn" href="#" target="_blank" rel="noopener">
+        <span class="btn btn-disabled" role="button" aria-disabled="true" data-tooltip="Coming Soon">
           <i class="fas fa-file-pdf"></i><span>Paper</span>
-        </a>
-        <a class="btn arxiv-btn" href="#" target="_blank" rel="noopener">
-          <!-- Official arXiv logomark (long-arm chi-X), split-color version.
-               Source: https://info.arxiv.org/assets/arxiv-logomark-small.svg
-               Left half = Cornell red (#b31b1b). Right half = white (currentColor).
-               The right-half compound paths from the original SVG were collapsed
-               to outer-only so they fill solid instead of rendering as outlines. -->
-          <svg class="ai-arxiv" viewBox="0 0 74.492 100.25" aria-hidden="true">
-            <g transform="translate(-526.086 -245.559)">
-              <!-- Right half: top-right end of the "/" arm + bottom-right end of the "\" arm -->
-              <path fill="currentColor" d="M586.72,255.616a3.377,3.377,0,0,1,.448.031,5.917,5.917,0,0,1,3.581,2.79c.454,1.116.314,2.023-1.315,4.141L563.168,293.6l-8.558-10.047,29.348-26.616a4.406,4.406,0,0,1,2.762-1.321Z"/>
-              <path fill="currentColor" d="M553.423,284.593l8.977,10.558L597.911,337.9c.873,1.093,1.419,2.186,1.047,3.418a4.092,4.092,0,0,1-2.721,2.837,3.557,3.557,0,0,1-1.045.159,4,4,0,0,1-2.687-1.124L548.01,300.808c-3.5-3.5-2.971-8.151.436-11.558l4.977-4.657Z"/>
-              <!-- Left half: top-left end of the "\" arm + bottom-left end of the "/" arm -->
-              <path fill="#b31b1b" d="M562.4,295.151l9.556,11.5,5.761-5.356a7.926,7.926,0,0,0,.041-11.743l-43.7-41.923s-1.671-2.029-3.437-2.071a4.49,4.49,0,0,0-4.23,2.718c-.688,1.651-.194,2.809,1.315,4.97l29.306,35.565Z"/>
-              <path fill="#b31b1b" d="M553.7,306.223l-17.116,21.024c-1.255,1.337-2.032,3.683-1.331,5.367a4.587,4.587,0,0,0,4.287,2.841,4.087,4.087,0,0,0,3.082-1.523l20.328-18.9Z"/>
-            </g>
-          </svg>
-          <span>arXiv</span>
-        </a>
-        <a class="btn" href="#" target="_blank" rel="noopener">
+        </span>
+        <span class="btn btn-disabled" role="button" aria-disabled="true" data-tooltip="Coming Soon">
           <i class="fab fa-github"></i><span>Code</span>
-        </a>
-        <a class="btn" href="#" target="_blank" rel="noopener">
-          <i class="fab fa-youtube"></i><span>Video</span>
+        </span>
+        <a class="btn" href="#real-world">
+          <i class="fas fa-video"></i><span>Videos</span>
         </a>
         <a class="btn" href="#bibtex">
           <i class="fas fa-quote-right"></i><span>BibTeX</span>
@@ -170,15 +162,18 @@
         </div>
         <div class="stat">
           <div class="stat-num">+44<span class="stat-unit">%</span></div>
-          <div class="stat-label">Real-world gain over the warm-up policy across four tasks</div>
+          <div class="stat-label">Up to improvement over the warm-up policy</div>
         </div>
         <div class="stat">
           <div class="stat-num">1<span class="stat-unit"> traj.</span></div>
           <div class="stat-label">Single expert trajectory per task for warm-up</div>
         </div>
-        <div class="stat">
-          <div class="stat-num">100<span class="stat-unit">%</span></div>
-          <div class="stat-label">OOD success on 3 held-out LIBERO tasks</div>
+        <div class="stat stat-text">
+          <div class="stat-num">Generalization</div>
+          <div class="stat-label">
+            evaluated in simulation (<strong>Sim</strong>) and physical
+            (<strong>Real</strong>) deployment
+          </div>
         </div>
       </div>
 
@@ -281,10 +276,12 @@
             <i class="fas fa-bolt"></i><span>Faster Convergence</span>
           </div>
           <p>
-            The red curve <strong>rises sharply within the first few hundred RL
-            steps</strong>, while the Action-Only+PPO baseline takes
-            <em>several times longer</em> to reach the same level — and never catches
-            up on LIBERO-Spatial or LIBERO-Long.
+            Starting from the same one-trajectory warm-up model, LaST-R1 trained
+            with LAPO improves more quickly than Action-Only+PPO across the
+            LIBERO suites. The paper attributes this sample efficiency to latent
+            CoT optimization: environmental rewards shape both reasoning tokens
+            and action sequences, smoothing online RL instead of updating only
+            physical actions.
           </p>
         </div>
         <div class="callout">
@@ -292,29 +289,31 @@
             <i class="fas fa-arrow-up"></i><span>Higher Final Accuracy</span>
           </div>
           <p>
-            At convergence, LaST-R1+LAPO
-            asymptotes near <strong>100% success</strong> on every suite, beating the
-            baseline by a wide margin — most strikingly on the long-horizon suite
-            (<strong>99.4% vs. 88.2%</strong>).
+            At convergence, LaST-R1+LAPO ranks first across Spatial, Object,
+            Goal, and Long in the LIBERO comparison table, reaching a 99.8%
+            average success rate. The paper highlights the Long suite as the
+            clearest gap, reporting 99.4% for LaST-R1 and 94.0% for
+            &pi;<sub>RL</sub>, consistent with stronger long-horizon
+            manipulation.
           </p>
         </div>
         <div class="callout">
           <div class="callout-title">
-            <i class="fas fa-globe"></i><span>Stronger OOD Transfer</span>
+            <i class="fas fa-globe"></i><span>Stronger Generalization</span>
           </div>
           <p>
-            On held-out tasks the policy reaches <strong>100% OOD success</strong>
-            on Spatial-Task0, Object-Task0, and Goal-Task5 — while the
-            Action-Only+PPO baseline overfits to training kinematics and even
-            <em>degrades</em> on long-horizon tasks.
+            LaST-R1 achieves zero-shot generalization to unseen objects,
+            backgrounds, and lighting conditions after RL post-training. By
+            interacting with the physical world, the VLA model learns from real
+            feedback, enabling it to better capture environment–robot dynamics and
+            generalize beyond memorized demonstration data.
           </p>
         </div>
       </div>
       <p class="caption-note">
-        Both axes — <em>sample efficiency</em> and <em>asymptotic performance</em> —
-        improve simultaneously, indicating that latent reasoning is not just a
-        regularizer but a fundamentally better optimization substrate for VLA
-        policies.
+        These trends follow the paper's result analysis: latent CoT optimization
+        smooths the RL optimization landscape and enables sample-efficient online
+        learning.
       </p>
     </div>
   </section>
@@ -334,16 +333,6 @@
         three OOD settings: <em>Unseen-Object</em> / <em>Unseen-Background</em> /
         <em>Unseen-Lighting</em>.
       </p>
-
-      <figure>
-        <img src="static/images/main_real.png" alt="Real-world rollouts after RL post-training" />
-        <figcaption>
-          <strong>Qualitative real-world rollouts.</strong> Frame-by-frame snapshots
-          of LaST-R1+LAPO solving each task on physical hardware after RL
-          post-training. Configurations changed for OOD evaluation are highlighted
-          with red boxes (object swap, background change, lighting variation).
-        </figcaption>
-      </figure>
 
       <h3 class="subhead">Success Rate (%) — After Warm-up vs. After RL</h3>
       <p class="caption-lead">
@@ -437,25 +426,19 @@
 
       <p class="caption-note">
         Each cell averages 20 independent rollouts at varied tabletop positions.
-        Most striking gains: <em>Wipe the Vase</em> Lighting goes from 20 → 95
-        (-69% drop dissolves to -0% drop), and <em>Open bottle cap</em> Object
-        from 30 → 95 (matches Original after RL).
+        The table reports the original training scenario and three real-world
+        generalization settings: unseen objects, background variations, and
+        lighting conditions.
       </p>
 
       <!-- =====================================================
-           VIDEO BLOCKS — one block per task, mirroring the four
-           tasks in the table above. Drop your .mp4 files into
-           static/videos/ with the filenames referenced below.
+           VIDEO BLOCKS — edited rollouts from ref/video-edited.
            ===================================================== -->
 
       <!-- Task 1: Insert hexagon block (single-arm) -->
       <div class="task-block">
         <h3>Insert Hexagon Block <span class="task-tag">single-arm</span></h3>
-        <p class="task-meta">
-          A single Franka arm picks up a hexagon block and inserts it into a tightly
-          fitted slot. Tests fine-grained alignment under sub-cm tolerance.
-        </p>
-        <span class="row-label">Original Rollout (90%)</span>
+        <span class="row-label">Original Rollout</span>
         <div class="video-grid one">
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
@@ -472,21 +455,21 @@
                    poster="static/videos/hexagon_object.jpg">
               <source src="static/videos/hexagon_object.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen object (75%)</figcaption>
+            <figcaption>Unseen object</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
                    poster="static/videos/hexagon_background.jpg">
               <source src="static/videos/hexagon_background.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen background (85%)</figcaption>
+            <figcaption>Unseen background</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
                    poster="static/videos/hexagon_lighting.jpg">
               <source src="static/videos/hexagon_lighting.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen lighting (80%)</figcaption>
+            <figcaption>Unseen lighting</figcaption>
           </figure>
         </div>
       </div>
@@ -494,11 +477,7 @@
       <!-- Task 2: Open bag zipper (dual-arm) -->
       <div class="task-block">
         <h3>Open Bag Zipper <span class="task-tag">dual-arm</span></h3>
-        <p class="task-meta">
-          Two coordinated Franka arms grasp opposite sides of a bag and pull the
-          zipper open. Tests bimanual coordination on a deformable target.
-        </p>
-        <span class="row-label">Original Rollout (95%)</span>
+        <span class="row-label">Original Rollout</span>
         <div class="video-grid one">
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
@@ -515,21 +494,21 @@
                    poster="static/videos/zipper_object.jpg">
               <source src="static/videos/zipper_object.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen object (80%)</figcaption>
+            <figcaption>Unseen object</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
                    poster="static/videos/zipper_background.jpg">
               <source src="static/videos/zipper_background.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen background (95%)</figcaption>
+            <figcaption>Unseen background</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
                    poster="static/videos/zipper_lighting.jpg">
               <source src="static/videos/zipper_lighting.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen lighting (90%)</figcaption>
+            <figcaption>Unseen lighting</figcaption>
           </figure>
         </div>
       </div>
@@ -537,11 +516,7 @@
       <!-- Task 3: Wipe the Vase with a Sponge (dual-arm) -->
       <div class="task-block">
         <h3>Wipe the Vase with a Sponge <span class="task-tag">dual-arm</span></h3>
-        <p class="task-meta">
-          One arm holds the vase steady, the other wipes it down with a sponge.
-          Tests bimanual coordination on a contact-rich, role-asymmetric task.
-        </p>
-        <span class="row-label">Original Rollout (95%)</span>
+        <span class="row-label">Original Rollout</span>
         <div class="video-grid one">
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
@@ -558,21 +533,21 @@
                    poster="static/videos/vase_object.jpg">
               <source src="static/videos/vase_object.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen object (80%)</figcaption>
+            <figcaption>Unseen object</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
                    poster="static/videos/vase_background.jpg">
               <source src="static/videos/vase_background.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen background (90%)</figcaption>
+            <figcaption>Unseen background</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
                    poster="static/videos/vase_lighting.jpg">
               <source src="static/videos/vase_lighting.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen lighting (95%)</figcaption>
+            <figcaption>Unseen lighting</figcaption>
           </figure>
         </div>
       </div>
@@ -580,16 +555,11 @@
       <!-- Task 4: Open bottle cap (dual-arm) -->
       <div class="task-block">
         <h3>Open Bottle Cap <span class="task-tag">dual-arm</span></h3>
-        <p class="task-meta">
-          One arm steadies the bottle while the other twists/pulls the cap off.
-          Tests temporally-evolving physical interactions and the coordination
-          required across cap-bottle contact dynamics.
-        </p>
-        <span class="row-label">Original Rollout (95%)</span>
+        <span class="row-label">Original Rollout</span>
         <div class="video-grid one">
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/images/video_placeholder.svg">
+                   poster="static/videos/bottle_original.jpg">
               <source src="static/videos/bottle_original.mp4" type="video/mp4" />
             </video>
             <figcaption>Original setting</figcaption>
@@ -599,24 +569,24 @@
         <div class="video-grid">
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/images/video_placeholder.svg">
+                   poster="static/videos/bottle_object.jpg">
               <source src="static/videos/bottle_object.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen object (95%)</figcaption>
+            <figcaption>Unseen object</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/images/video_placeholder.svg">
+                   poster="static/videos/bottle_background.jpg">
               <source src="static/videos/bottle_background.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen background (80%)</figcaption>
+            <figcaption>Unseen background</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/images/video_placeholder.svg">
+                   poster="static/videos/bottle_lighting.jpg">
               <source src="static/videos/bottle_lighting.mp4" type="video/mp4" />
             </video>
-            <figcaption>Unseen lighting (85%)</figcaption>
+            <figcaption>Unseen lighting</figcaption>
           </figure>
         </div>
       </div>
@@ -671,11 +641,13 @@
   <section class="section" id="bibtex">
     <div class="container narrow">
       <h2>BibTeX</h2>
-      <pre><code>@article{lastr1_2026,
+      <pre><code>@misc{chen2026lastr1,
   title   = {LaST-R1: Reinforcing Action via Adaptive Physical
              Latent Reasoning for VLA Models},
-  author  = {Anonymous},
-  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  author  = {Hao Chen and Jiaming Liu and Zhonghao Yan and Nuowei Han
+             and Renrui Zhang and Chenyang Gu and Jialin Gao and Ziyu Guo
+             and Siyuan Qian and Yinxi Wang and Peng Jia and Chi-Wing Fu
+             and Shanghang Zhang and Pheng-Ann Heng},
   year    = {2026}
 }</code></pre>
       <button id="copy-bibtex" class="btn small">
@@ -691,8 +663,7 @@
         Page template adapted from
         <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener"
           >Nerfies</a
-        >. Source on
-        <a href="#" target="_blank" rel="noopener">GitHub</a>.
+        >.
       </p>
     </div>
   </footer>
