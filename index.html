@@ -63,20 +63,35 @@
   </script>
 </head>
 <body>
-  <!-- Hero intro veil. Shown only when <html> has .intro-active. The image and
-       title here are duplicates of the in-flow ones; on first scroll we apply
-       transforms that *morph* them into the in-flow positions, then fade the
-       veil out — visually a continuous transformation instead of a cross-fade. -->
+  <!-- Hero intro veil. Shown only when <html> has .intro-active. On first scroll
+       the title morphs into the in-flow paper title, then the veil fades out. -->
   <div id="intro-veil" aria-label="Welcome">
-    <div class="intro-img-area">
-      <img class="intro-img" src="static/images/teaser.png" alt="LaST-R1 teaser" />
-    </div>
     <div class="intro-bar"></div>
     <div class="intro-title-area">
       <h1 class="intro-title">
         <span class="method-name">LaST-R1</span>:
         Reinforcing Action via Adaptive Physical Latent Reasoning for VLA Models
       </h1>
+    </div>
+    <div class="intro-video-area" aria-label="Representative real-world rollouts">
+      <div class="intro-video-grid">
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="static/videos/bottle_original.jpg">
+          <source src="static/videos/bottle_original.mp4" type="video/mp4" />
+        </video>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="static/videos/vase_original.jpg">
+          <source src="static/videos/vase_original.mp4" type="video/mp4" />
+        </video>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="static/videos/hexagon_lighting.jpg">
+          <source src="static/videos/hexagon_lighting.mp4" type="video/mp4" />
+        </video>
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="static/videos/zipper_background.jpg">
+          <source src="static/videos/zipper_background.mp4" type="video/mp4" />
+        </video>
+      </div>
     </div>
     <p class="intro-hint" aria-hidden="true">scroll&nbsp;&nbsp;↓</p>
   </div>
@@ -435,15 +450,15 @@
            VIDEO BLOCKS — edited rollouts from ref/video-edited.
            ===================================================== -->
 
-      <!-- Task 1: Insert hexagon block (single-arm) -->
+      <!-- Task 1: Open bottle cap (dual-arm) -->
       <div class="task-block">
-        <h3>Insert Hexagon Block <span class="task-tag">single-arm</span></h3>
+        <h3>Open Bottle Cap <span class="task-tag">dual-arm</span></h3>
         <span class="row-label">Original Rollout</span>
         <div class="video-grid one">
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/hexagon_original.jpg">
-              <source src="static/videos/hexagon_original.mp4" type="video/mp4" />
+                   poster="static/videos/bottle_original.jpg">
+              <source src="static/videos/bottle_original.mp4" type="video/mp4" />
             </video>
             <figcaption>Original setting</figcaption>
           </figure>
@@ -452,22 +467,22 @@
         <div class="video-grid">
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/hexagon_object.jpg">
-              <source src="static/videos/hexagon_object.mp4" type="video/mp4" />
+                   poster="static/videos/bottle_object.jpg">
+              <source src="static/videos/bottle_object.mp4" type="video/mp4" />
             </video>
             <figcaption>Unseen object</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/hexagon_background.jpg">
-              <source src="static/videos/hexagon_background.mp4" type="video/mp4" />
+                   poster="static/videos/bottle_background.jpg">
+              <source src="static/videos/bottle_background.mp4" type="video/mp4" />
             </video>
             <figcaption>Unseen background</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/hexagon_lighting.jpg">
-              <source src="static/videos/hexagon_lighting.mp4" type="video/mp4" />
+                   poster="static/videos/bottle_lighting.jpg">
+              <source src="static/videos/bottle_lighting.mp4" type="video/mp4" />
             </video>
             <figcaption>Unseen lighting</figcaption>
           </figure>
@@ -552,15 +567,15 @@
         </div>
       </div>
 
-      <!-- Task 4: Open bottle cap (dual-arm) -->
+      <!-- Task 4: Insert hexagon block (single-arm) -->
       <div class="task-block">
-        <h3>Open Bottle Cap <span class="task-tag">dual-arm</span></h3>
+        <h3>Insert Hexagon Block <span class="task-tag">single-arm</span></h3>
         <span class="row-label">Original Rollout</span>
         <div class="video-grid one">
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/bottle_original.jpg">
-              <source src="static/videos/bottle_original.mp4" type="video/mp4" />
+                   poster="static/videos/hexagon_original.jpg">
+              <source src="static/videos/hexagon_original.mp4" type="video/mp4" />
             </video>
             <figcaption>Original setting</figcaption>
           </figure>
@@ -569,22 +584,22 @@
         <div class="video-grid">
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/bottle_object.jpg">
-              <source src="static/videos/bottle_object.mp4" type="video/mp4" />
+                   poster="static/videos/hexagon_object.jpg">
+              <source src="static/videos/hexagon_object.mp4" type="video/mp4" />
             </video>
             <figcaption>Unseen object</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/bottle_background.jpg">
-              <source src="static/videos/bottle_background.mp4" type="video/mp4" />
+                   poster="static/videos/hexagon_background.jpg">
+              <source src="static/videos/hexagon_background.mp4" type="video/mp4" />
             </video>
             <figcaption>Unseen background</figcaption>
           </figure>
           <figure>
             <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/bottle_lighting.jpg">
-              <source src="static/videos/bottle_lighting.mp4" type="video/mp4" />
+                   poster="static/videos/hexagon_lighting.jpg">
+              <source src="static/videos/hexagon_lighting.mp4" type="video/mp4" />
             </video>
             <figcaption>Unseen lighting</figcaption>
           </figure>

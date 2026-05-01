@@ -14,7 +14,7 @@ Teaser  ─►  Title + Buttons  ─►  Headline Results (Sim)  ─►  Real-Wo
 
 | 段落 | 内容 |
 |------|------|
-| **Hero intro** | 进页面瞬间全屏显示标题白条 + teaser 图，第一次滚动触发 FLIP morph 动画把标题滑到正文位置、teaser 缩到正常位置；hash 直链（`#bibtex` 等）和 `prefers-reduced-motion` 用户跳过此动画 |
+| **Hero intro** | 进页面瞬间全屏显示标题 + 2×2 真机视频墙，第一次滚动触发 FLIP morph 动画把标题滑到正文位置；hash 直链（`#bibtex` 等）和 `prefers-reduced-motion` 用户跳过此动画 |
 | **Teaser** | 论文 Figure 1 (`teaser.png`) |
 | **Title + Authors + Buttons** | 论文标题、真实作者和机构；`LaST-R1` 用 Cornell 红高亮；Paper / Code 为 Coming Soon 悬浮提示，Videos / BibTeX 可点击 |
 | **Headline Results** | 4 张数字卡（**99.8%** LIBERO / **up to +44%** real-world / **1 traj** warm-up / sim+real generalization）+ 完整 LIBERO 11 行对比表（`tab:libero_comparison`）+ 最新学习曲线图（`main_results.png`）+ 收紧措辞后的三联 callout |
@@ -39,7 +39,7 @@ Teaser  ─►  Title + Buttons  ─►  Headline Results (Sim)  ─►  Real-Wo
     │   ├── vase_*.mp4                  # 4 段
     │   └── bottle_*.mp4                # 4 段
     └── images/
-        ├── teaser.png                  # 用：teaser
+        ├── teaser.png                  # 用：teaser + 社交分享 OG image
         └── main_results.png            # 用：学习曲线
 ```
 
@@ -137,7 +137,7 @@ var FADE_MS  = 350;   // morph 完成后 veil 整体淡出时间
 - **KaTeX** via CDN（jsdelivr）：所有 `$...$` / `$$...$$` 自动渲染。当前页面 KaTeX 主要用于公式（论文 V3 删掉 method 段后实际使用很少，但 CDN 仍保留以备将来）
 - **Font Awesome 6** via CDN：所有按钮图标
 - **Google Fonts** Inter (sans) + Noto Serif (标题)
-- **Intro morph**：FLIP 思路，JS 实测 in-flow 元素位置 → 给 veil 元素加 `translate(dx,dy) scale(s)` → CSS `transition: transform 0.95s` 驱动平滑变换 → veil 淡出。标题 scale ≈ 1（intro 和 in-flow 用同字号），所以视觉上是纯 translate（标题往下，图片往上）
+- **Intro morph**：FLIP 思路，JS 实测 in-flow 标题位置 → 给 veil 标题加 `translate(dx,dy) scale(s)` → CSS `transition: transform 0.95s` 驱动平滑变换 → veil 淡出。开场 2×2 视频墙只在 veil 中展示，不参与 morph。
 
 ## 致谢
 
