@@ -332,17 +332,17 @@
           <p>
             LaST-R1 achieves zero-shot generalization to unseen objects,
             backgrounds, and lighting conditions after RL post-training. The
-            latest paper reports that LaST-R1 confines real-world performance
-            drops to within 15% for novel objects and remains robust under
-            background and lighting variation.
+            paper reports that LaST-R1 confines real-world performance drops
+            to within 15% for novel objects and remains robust under background
+            and lighting variation.
           </p>
         </div>
       </div>
       <p class="caption-note">
         These trends follow the paper's result analysis: latent CoT optimization
         smooths the RL optimization landscape and enables sample-efficient online
-        learning. The latest manuscript further points to appendix analyses on
-        adaptive reasoning lengths and optimized execution episode lengths.
+        learning. Appendix analyses further examine adaptive reasoning lengths
+        and optimized execution episode lengths.
       </p>
 
       <figure>
@@ -374,8 +374,8 @@
 
       <h3 class="subhead">Success Rate (%) — SOTA SFT vs. Few-shot SFT→RL</h3>
       <p class="caption-lead">
-        Mirrors Table&nbsp;2 of the v3 paper. Numbers in parentheses show the
-        drop from each method's <em>Original</em> result under OOD perturbations.
+        Numbers in parentheses show the drop from each method's
+        <em>Original</em> result under OOD perturbations.
         LaST-R1 improves average <em>Original</em> success from
         <strong>52.5%</strong> after warm-up to <strong>93.75%</strong> after RL,
         surpassing &pi;<sub>0.5</sub> at <strong>71.25%</strong>.
@@ -468,15 +468,6 @@
         The standard deviation over three independent runs is 1.25% for LaST-R1
         after RL and 4.5% for &pi;<sub>0.5</sub>.
       </p>
-
-      <figure>
-        <img src="static/images/main_real.png" alt="Real-world task and generalization examples" />
-        <figcaption>
-          <strong>Real-world task examples.</strong>
-          The v3 paper visualizes the Insert Hexagon generalization scenarios and
-          execution processes for zipper opening, vase wiping, and bottle-cap opening.
-        </figcaption>
-      </figure>
 
       <!-- =====================================================
            VIDEO BLOCKS — edited rollouts from ref/video-edited.

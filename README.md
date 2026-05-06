@@ -18,8 +18,8 @@ Teaser  ─►  Title + Buttons  ─►  Headline Results (Sim)  ─►  Real-Wo
 | **Teaser** | 论文 Figure 1 (`teaser.png`) |
 | **Title + Authors + Buttons** | 论文标题、网站展示作者和机构；`LaST-R1` 用 Cornell 红高亮；Paper / Code / Models / Videos / BibTeX 可点击 |
 | **Headline Results** | 4 张数字卡（**99.9%** LIBERO / **+22.5%** real-world over SOTA SFT / **1 traj** warm-up / sim+real generalization）+ 完整 LIBERO 12 行对比表（`tab:libero_comparison`）+ 最新学习曲线图（`main_results.png`）+ generalization 图（`main_ablation_gen.png`）+ 三联 callout |
-| **Real-World** | 论文 Table 2 真机成功率（`π0.5` Full-size SFT vs. LaST-R1 Few-shot SFT→RL）+ `main_real.png` qualitative 图 + `video-edited` 里的 16 段真机视频 |
-| **Abstract** | 论文 V3 abstract 原文 |
+| **Real-World** | 论文 Table 2 真机成功率（`π0.5` Full-size SFT vs. LaST-R1 Few-shot SFT→RL）+ `video-edited` 里的 16 段真机视频 |
+| **Abstract** | 论文 abstract 原文 |
 | **BibTeX** | 引用块 + 一键复制按钮 |
 
 ## 目录结构
@@ -41,11 +41,10 @@ Teaser  ─►  Title + Buttons  ─►  Headline Results (Sim)  ─►  Real-Wo
     └── images/
         ├── teaser.png                  # 用：teaser + 社交分享 OG image
         ├── main_results.png            # 用：学习曲线
-        ├── main_ablation_gen.png       # 用：LIBERO generalization 图
-        └── main_real.png               # 用：真机 qualitative 图
+        └── main_ablation_gen.png       # 用：LIBERO generalization 图
 ```
 
-## 论文实验数据（已对齐到论文 V3）
+## 论文实验数据
 
 ### LIBERO Benchmark（仿真）
 | Suite | LaST-R1 | π_RL（次优） |
@@ -136,10 +135,10 @@ var FADE_MS  = 350;   // morph 完成后 veil 整体淡出时间
 
 ## Tech notes
 
-- **KaTeX** via CDN（jsdelivr）：所有 `$...$` / `$$...$$` 自动渲染。当前页面 KaTeX 主要用于公式（论文 V3 删掉 method 段后实际使用很少，但 CDN 仍保留以备将来）
+- **KaTeX** via CDN（jsdelivr）：所有 `$...$` / `$$...$$` 自动渲染。当前页面 KaTeX 主要用于公式，CDN 保留以备将来使用。
 - **Font Awesome 6** via CDN：所有按钮图标
 - **Google Fonts** Inter (sans) + Noto Serif (标题)
-- **Intro morph**：FLIP 思路，JS 实测 in-flow 标题位置 → 给 veil 标题加 `translate(dx,dy) scale(s)` → CSS `transition: transform 0.95s` 驱动平滑变换 → veil 淡出。开场 2×2 视频墙只在 veil 中展示，不参与 morph。
+- **Intro morph**：FLIP 思路，JS 同步 veil 标题和 in-flow 标题的排版 metrics，再加 `translate(dx,dy)` → CSS `transition: transform 0.95s` 驱动平滑变换 → veil 淡出。开场 2×2 视频墙只在 veil 中展示，不参与 morph。
 
 ## 致谢
 
