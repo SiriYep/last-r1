@@ -66,10 +66,9 @@ html.intro-done body > *:not(#intro-veil) {
   border-bottom: 1px solid #e5e5e7;
 }
 
-/* Title — centered inside its own positioned area so we can transform freely
-   without fighting a translate(-50%) centering trick.
-   IMPORTANT: matches the in-flow .paper-title font/size/wrapping exactly so the
-   morph is a *pure translate* — no scaling, no wrap-line shift. */
+/* Title — centered inside its own positioned area so we can transform freely.
+   It shares width, font metrics, and wrapping rules with .paper-title so the
+   morph remains a pure translate with no scale or line-break shift. */
 #intro-veil .intro-title-area {
   position: absolute;
   top: 0;
@@ -79,24 +78,27 @@ html.intro-done body > *:not(#intro-veil) {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.2rem 1.5rem;
+  padding: 1.2rem 1.25rem;
   pointer-events: none;
   z-index: 2;
 }
+.paper-title,
 #intro-veil .intro-title {
   margin: 0;
   text-align: center;
   font-family: 'Noto Serif', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: 2.2rem;          /* match .paper-title */
+  font-size: 2.2rem;
   letter-spacing: 0;
   line-height: 1.2;
   color: var(--fg);
-  width: min(900px, calc(100vw - 3rem));
+  width: var(--paper-title-width);
   max-width: 900px;
   min-width: 0;
   text-wrap: balance;
   overflow-wrap: anywhere;
+}
+#intro-veil .intro-title {
   animation: introFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s both;
   transform-origin: center center;
   will-change: transform;
@@ -110,9 +112,9 @@ html.intro-done body > *:not(#intro-veil) {
   vertical-align: 0.5em;
 }
 @media (max-width: 700px) {
+  .paper-title,
   #intro-veil .intro-title {
     font-size: 1.6rem;
-    width: min(900px, calc(100vw - 2rem));
   }
 }
 
@@ -243,6 +245,7 @@ html.intro-done #intro-veil {
   --accent-blue: #2f5f8f;   /* paper blue */
   --max-width: 1100px;
   --narrow-width: 820px;
+  --paper-title-width: min(900px, calc(100vw - 2.5rem));
   --radius: 8px;
 }
 

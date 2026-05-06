@@ -12,7 +12,13 @@
 
   var triggered = false;
 
+  syncIntroTitleMetrics();
   playIntroVideos();
+  requestAnimationFrame(syncIntroTitleMetrics);
+  window.addEventListener('resize', syncIntroTitleMetrics, { passive: true });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncIntroTitleMetrics);
+  }
 
   function exit() {
     if (triggered) return;
@@ -32,17 +38,13 @@
       return;
     }
 
+    syncIntroTitleMetrics();
+
     // In-flow targets — they have visibility:hidden but layout exists, so
     // getBoundingClientRect returns valid coordinates.
     var fTit = flowTitle.getBoundingClientRect();
     var vTit = veilTitle.getBoundingClientRect();
 
-    // Title: scale by font-size ratio (more reliable than width when wrapping
-    // differs between the small-veil and large-in-flow versions of the title).
-    var titScale = parseFloat(getComputedStyle(flowTitle).fontSize) /
-                   parseFloat(getComputedStyle(veilTitle).fontSize);
-    if (!isFinite(titScale) || titScale <= 0) titScale = 1;
-    titScale = Math.min(Math.max(titScale, 0.5), 3);
     var titDx = (fTit.left + fTit.width / 2)  - (vTit.left + vTit.width / 2);
     var titDy = (fTit.top  + fTit.height / 2) - (vTit.top  + vTit.height / 2);
 
@@ -60,8 +62,9 @@
     /* eslint-disable-next-line no-unused-expressions */
     veilTitle.offsetHeight;
 
-    // Apply target transforms — the CSS transition drives the smooth morph.
-    veilTitle.style.transform = 'translate(' + titDx + 'px, ' + titDy + 'px) scale(' + titScale + ')';
+    // Apply target transform. The title metrics are identical, so this is a
+    // pure translate with no scale or rewrap during the morph.
+    veilTitle.style.transform = 'translate(' + titDx + 'px, ' + titDy + 'px)';
 
     // Once the morph is complete, swap to `intro-done`: the veil fades out and
     // the in-flow content (already at the same positions) becomes visible.
@@ -77,7 +80,28 @@
   function cleanup() {
     var veil = document.getElementById('intro-veil');
     if (veil) veil.remove();
+    window.removeEventListener('resize', syncIntroTitleMetrics);
     html.classList.remove('intro-done');
+  }
+
+  function syncIntroTitleMetrics() {
+    var veilTitle = document.querySelector('#intro-veil .intro-title');
+    var flowTitle = document.querySelector('.paper-title');
+    if (!veilTitle || !flowTitle) return;
+
+    var rect = flowTitle.getBoundingClientRect();
+    var style = getComputedStyle(flowTitle);
+    if (rect.width > 0) {
+      veilTitle.style.width = rect.width + 'px';
+    }
+    veilTitle.style.maxWidth = style.maxWidth;
+    veilTitle.style.fontFamily = style.fontFamily;
+    veilTitle.style.fontSize = style.fontSize;
+    veilTitle.style.fontWeight = style.fontWeight;
+    veilTitle.style.lineHeight = style.lineHeight;
+    veilTitle.style.letterSpacing = style.letterSpacing;
+    veilTitle.style.textWrap = style.textWrap;
+    veilTitle.style.overflowWrap = style.overflowWrap;
   }
 
   function playIntroVideos() {
