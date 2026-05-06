@@ -12,6 +12,8 @@
 
   var triggered = false;
 
+  playIntroVideos();
+
   function exit() {
     if (triggered) return;
     triggered = true;
@@ -78,6 +80,23 @@
     html.classList.remove('intro-done');
   }
 
+  function playIntroVideos() {
+    var videos = document.querySelectorAll('#intro-veil video');
+    Array.prototype.forEach.call(videos, function (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      var playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.catch === 'function') {
+        playAttempt.catch(function () {
+          video.addEventListener('canplay', function () {
+            video.play().catch(function () {});
+          }, { once: true });
+        });
+      }
+    });
+  }
+
   function stopIntroVideos() {
     var videos = document.querySelectorAll('#intro-veil video');
     Array.prototype.forEach.call(videos, function (video) {
@@ -91,7 +110,10 @@
   window.addEventListener('wheel',     exit, opts);
   window.addEventListener('touchmove', exit, opts);
   var veilEl = document.getElementById('intro-veil');
-  if (veilEl) veilEl.addEventListener('click', exit, opts);
+  if (veilEl) {
+    veilEl.addEventListener('click', exit, opts);
+    veilEl.addEventListener('pointerdown', playIntroVideos, { passive: true, once: true });
+  }
 
   function onKey(e) {
     var keys = ['ArrowDown', 'PageDown', 'End', ' ', 'Spacebar', 'Enter'];
