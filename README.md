@@ -16,7 +16,7 @@ Teaser  ─►  Title + Buttons  ─►  Headline Results (Sim)  ─►  Real-Wo
 |------|------|
 | **Hero intro** | 进页面瞬间全屏显示标题 + 2×2 真机视频墙，第一次滚动触发 FLIP morph 动画把标题滑到正文位置；hash 直链（`#bibtex` 等）和 `prefers-reduced-motion` 用户跳过此动画 |
 | **Teaser** | 论文 Figure 1 (`teaser.png`) |
-| **Title + Authors + Buttons** | 论文标题、网站展示作者和机构；`LaST-R1` 用 Cornell 红高亮；Paper / arXiv / Videos / BibTeX 可点击，Code 为 Coming Soon 悬浮提示 |
+| **Title + Authors + Buttons** | 论文标题、网站展示作者和机构；`LaST-R1` 用 Cornell 红高亮；Paper / Code / Models / Videos / BibTeX 可点击 |
 | **Headline Results** | 4 张数字卡（**99.9%** LIBERO / **+22.5%** real-world over SOTA SFT / **1 traj** warm-up / sim+real generalization）+ 完整 LIBERO 12 行对比表（`tab:libero_comparison`）+ 最新学习曲线图（`main_results.png`）+ generalization 图（`main_ablation_gen.png`）+ 三联 callout |
 | **Real-World** | 论文 Table 2 真机成功率（`π0.5` Full-size SFT vs. LaST-R1 Few-shot SFT→RL）+ `main_real.png` qualitative 图 + `video-edited` 里的 16 段真机视频 |
 | **Abstract** | 论文 V3 abstract 原文 |
@@ -79,7 +79,7 @@ python3 -m http.server 8000
 
 | 位置 | 替换什么 |
 |------|---------|
-| `#bibtex` 内 `<pre><code>` 块 | arXiv / conference 信息发布后可补 venue 或 preprint id |
+| `#bibtex` 内 `<pre><code>` 块 | Google Scholar BibTeX 条目 |
 
 ## 真机视频
 
