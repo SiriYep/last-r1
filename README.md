@@ -1,6 +1,6 @@
 # LaST-R1 — Project Page
 
-Static project page for **LaST-R1: Reinforcing Action via Adaptive Physical Latent Reasoning for VLA Models**. Plain HTML / CSS / vanilla JS, no build step, hosted on GitHub Pages.
+Static project page for **LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning**. Plain HTML / CSS / vanilla JS, no build step, hosted on GitHub Pages.
 
 🔗 **Live**: <https://siriyep.github.io/last-r1/>
 
@@ -16,9 +16,9 @@ Teaser  ─►  Title + Buttons  ─►  Headline Results (Sim)  ─►  Real-Wo
 |------|------|
 | **Hero intro** | 进页面瞬间全屏显示标题 + 2×2 真机视频墙，第一次滚动触发 FLIP morph 动画把标题滑到正文位置；hash 直链（`#bibtex` 等）和 `prefers-reduced-motion` 用户跳过此动画 |
 | **Teaser** | 论文 Figure 1 (`teaser.png`) |
-| **Title + Authors + Buttons** | 论文标题、真实作者和机构；`LaST-R1` 用 Cornell 红高亮；Paper / Code 为 Coming Soon 悬浮提示，Videos / BibTeX 可点击 |
-| **Headline Results** | 4 张数字卡（**99.8%** LIBERO / **up to +44%** real-world / **1 traj** warm-up / sim+real generalization）+ 完整 LIBERO 11 行对比表（`tab:libero_comparison`）+ 最新学习曲线图（`main_results.png`）+ 收紧措辞后的三联 callout |
-| **Real-World** | 论文 Table 3 真机成功率（hexagon \| zipper / vase \| bottle cap，含相对下降比例）+ `video-edited` 里的 16 段真机视频 |
+| **Title + Authors + Buttons** | 论文标题、网站展示作者和机构；`LaST-R1` 用 Cornell 红高亮；Paper / arXiv / Videos / BibTeX 可点击，Code 为 Coming Soon 悬浮提示 |
+| **Headline Results** | 4 张数字卡（**99.9%** LIBERO / **+22.5%** real-world over SOTA SFT / **1 traj** warm-up / sim+real generalization）+ 完整 LIBERO 12 行对比表（`tab:libero_comparison`）+ 最新学习曲线图（`main_results.png`）+ generalization 图（`main_ablation_gen.png`）+ 三联 callout |
+| **Real-World** | 论文 Table 2 真机成功率（`π0.5` Full-size SFT vs. LaST-R1 Few-shot SFT→RL）+ `main_real.png` qualitative 图 + `video-edited` 里的 16 段真机视频 |
 | **Abstract** | 论文 V3 abstract 原文 |
 | **BibTeX** | 引用块 + 一键复制按钮 |
 
@@ -40,7 +40,9 @@ Teaser  ─►  Title + Buttons  ─►  Headline Results (Sim)  ─►  Real-Wo
     │   └── bottle_*.mp4                # 4 段
     └── images/
         ├── teaser.png                  # 用：teaser + 社交分享 OG image
-        └── main_results.png            # 用：学习曲线
+        ├── main_results.png            # 用：学习曲线
+        ├── main_ablation_gen.png       # 用：LIBERO generalization 图
+        └── main_real.png               # 用：真机 qualitative 图
 ```
 
 ## 论文实验数据（已对齐到论文 V3）
@@ -51,20 +53,20 @@ Teaser  ─►  Title + Buttons  ─►  Headline Results (Sim)  ─►  Real-Wo
 | Spatial | **99.8** | 99.6 |
 | Object | **100.0** | 100.0 |
 | Goal | **100.0** | 99.6 |
-| Long | **99.4** | 94.0 |
-| **Average** | **99.8** | 98.3 |
+| Long | **99.8** | 94.0 |
+| **Average** | **99.9** | 98.3 |
 
-### Real-World 真机（4 任务，warm-up vs RL，含 OOD 三列）
+### Real-World 真机（4 任务，SOTA SFT vs Few-shot SFT→RL，含 OOD 三列）
 
 每任务格式：`Original / Unseen-Object / -Background / -Lighting`
 
-| Task | After warm-up | After RL |
-|------|---------------|----------|
-| Insert hexagon block (single) | 45 / 35 / 35 / 40 | **90 / 75 / 85 / 80** |
-| Open bag zipper (dual) | 55 / 30 / 50 / 45 | **95 / 80 / 95 / 90** |
-| Wipe the Vase with a Sponge (dual) | 65 / 35 / 40 / 20 | **95 / 80 / 90 / 95** |
-| Open bottle cap (dual) | 45 / 30 / 30 / 35 | **95 / 95 / 80 / 85** |
-| **Original 列平均** | 52.5 | **93.75** |
+| Task | π0.5 Full-size SFT | LaST-R1 Few-shot SFT→RL |
+|------|--------------------|--------------------------|
+| Insert hexagon block (single) | 65 / 35 / 55 / 40 | **45→90 / 75 / 85 / 80** |
+| Open bag zipper (dual) | 75 / 30 / 70 / 60 | **55→95 / 80 / 95 / 90** |
+| Wipe vase with sponge (dual) | 75 / 45 / 65 / 50 | **65→95 / 80 / 90 / 95** |
+| Open bottle cap (dual) | 70 / 50 / 55 / 55 | **45→95 / 95 / 80 / 85** |
+| **Original 列平均** | 71.25 | **52.5→93.75** |
 
 ## 本地预览
 
@@ -93,7 +95,7 @@ python3 -m http.server 8000
 | | Unseen-Object | `static/videos/zipper_object.mp4` |
 | | Unseen-Background | `static/videos/zipper_background.mp4` |
 | | Unseen-Lighting | `static/videos/zipper_lighting.mp4` |
-| **Wipe the Vase with a Sponge** (dual-arm) | Original | `static/videos/vase_original.mp4` |
+| **Wipe vase with sponge** (dual-arm) | Original | `static/videos/vase_original.mp4` |
 | | Unseen-Object | `static/videos/vase_object.mp4` |
 | | Unseen-Background | `static/videos/vase_background.mp4` |
 | | Unseen-Lighting | `static/videos/vase_lighting.mp4` |
@@ -115,7 +117,7 @@ GitHub 单文件 100 MB 上限，仓库总大小 1 GB 上限。
 `static/css/style.css` 顶部 `:root`：
 
 ```css
---accent: #b11f3a;        /* Cornell 红 — 标题 LaST-R1 / "After RL" 行 / callout 边线 */
+--accent: #b11f3a;        /* Cornell 红 — 标题 LaST-R1 / LaST-R1 表格行 / callout 边线 */
 --accent-blue: #2f5f8f;   /* baseline 蓝 — 学习曲线注释 */
 ```
 

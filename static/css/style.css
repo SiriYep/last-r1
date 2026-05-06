@@ -92,7 +92,11 @@ html.intro-done body > *:not(#intro-veil) {
   letter-spacing: 0;
   line-height: 1.2;
   color: var(--fg);
+  width: min(900px, calc(100vw - 3rem));
   max-width: 900px;
+  min-width: 0;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
   animation: introFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s both;
   transform-origin: center center;
   will-change: transform;
@@ -108,6 +112,7 @@ html.intro-done body > *:not(#intro-veil) {
 @media (max-width: 700px) {
   #intro-veil .intro-title {
     font-size: 1.6rem;
+    width: min(900px, calc(100vw - 2rem));
   }
 }
 
@@ -663,9 +668,9 @@ figcaption {
   font-weight: 400;
 }
 
-/* Real-world tables — light unified palette: Stages cell + task-pair headers
+/* Real-world tables — light unified palette: Methods cell + task-pair headers
    share a slightly darker tint (#f1f1f4); perturbation labels are a lighter
-   tint (#fafafb); data rows are white; "After RL" stays pink. The 2px black
+   tint (#fafafb); data rows are white; LaST-R1 stays pink. The 2px black
    vertical bar between task pairs mirrors the `|` from LaTeX `lcccc|cccc`. */
 .real-world-table {
   margin-bottom: 1rem;
@@ -690,9 +695,9 @@ figcaption {
 .real-world-table thead th[rowspan] {
   background: #f1f1f4;
   color: var(--fg);
-  border-right: 2px solid #4a4a4a;     /* anchor the Stages column */
+  border-right: 2px solid #4a4a4a;     /* anchor the Methods column */
   font-weight: 700;
-  width: 8.5rem;
+  width: 13rem;
 }
 /* The "|" separator from `lcccc|cccc` */
 .real-world-table .pair-left-border {
@@ -701,7 +706,7 @@ figcaption {
 .real-world-table tbody td:first-child {
   background: #fafafb;
   font-weight: 500;
-  border-right: 2px solid #4a4a4a;     /* continues the Stages anchor down */
+  border-right: 2px solid #4a4a4a;     /* continues the Methods anchor down */
   text-align: left;
   padding-left: 0.9rem;
 }
@@ -715,7 +720,7 @@ figcaption {
 .real-world-table tr.ours-row:hover {
   background: var(--accent-soft);
 }
-/* Relative drop annotations next to OOD numbers, e.g. "75 (-16%)" */
+/* Relative drop annotations next to OOD numbers, e.g. "75 (-15%)" */
 .real-world-table .drop {
   color: var(--fg-muted);
   font-size: 0.78em;
@@ -725,6 +730,11 @@ figcaption {
 .real-world-table tr.ours-row .drop {
   /* Slightly muted on the highlighted row too, but keep some weight */
   color: #6b3a45;
+}
+.real-world-table .warmup {
+  color: var(--fg-muted);
+  font-weight: 500;
+  margin-right: 0.08em;
 }
 
 /* ========== Video grid (real-world rollouts) ========== */
